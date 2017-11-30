@@ -1,0 +1,98 @@
+
+# 高可用多节点配置
+
+spring:
+  application:
+    name: eureka-server
+
+#包含其他profile
+#  profiles:
+#    include:
+
+# security
+security:
+  basic:
+    enabled: true
+  user:
+    name: eurekaUser #用户名
+    password: 7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c #密码
+encrypt:
+  key: 603e97e0af1f3cc818b24977fd87a2b12a1b955f7386d96e8b19a3835567347d72a0d7c3a2d084e5
+
+# 容器
+server:
+#  port: 8111
+  port: ${spring.server.port:8111}
+
+eureka:
+  instance:
+    hostname: eureka-server-node1
+#    hostname: localhost
+  client:
+    registerWithEureka: false #是否在注册机上注册自己以供其他服务发现, 默认true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node2:8111/eureka/,http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node3:8111/eureka/
+#      defaultZone: http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node3:8113/eureka/,http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node2:8112/eureka/
+---
+spring:
+  application:
+    name: eureka-server
+  profiles: node2
+
+# security
+security:
+  basic:
+    enabled: true
+  user:
+    name: eurekaUser #用户名
+    password: 7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c #密码
+encrypt:
+  key: 603e97e0af1f3cc818b24977fd87a2b12a1b955f7386d96e8b19a3835567347d72a0d7c3a2d084e5
+
+# 容器
+server:
+#  port: 8112
+  port: ${spring.server.port:8111}
+
+eureka:
+  instance:
+    hostname: eureka-server-node2
+#    hostname: localhost
+  client:
+    registerWithEureka: false #是否在注册机上注册自己以供其他服务发现, 默认true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node1:8111/eureka/,http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node3:8111/eureka/
+#      defaultZone: http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node1:8111/eureka/,http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node3:8113/eureka/
+---
+spring:
+  application:
+    name: eureka-server
+  profiles: node3
+
+# security
+security:
+  basic:
+    enabled: true
+  user:
+    name: eurekaUser #用户名
+    password: 7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c #密码
+encrypt:
+  key: 603e97e0af1f3cc818b24977fd87a2b12a1b955f7386d96e8b19a3835567347d72a0d7c3a2d084e5
+
+# 容器
+server:
+#  port: 8113
+  port: ${spring.server.port:8111}
+
+eureka:
+  instance:
+    hostname: eureka-server-node3
+#    hostname: localhost
+  client:
+    registerWithEureka: false #是否在注册机上注册自己以供其他服务发现, 默认true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node1:8111/eureka/,http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node2:8111/eureka/
+#      defaultZone: http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node1:8111/eureka/,http://eurekaUser:7305e7f270f032a8de3ac686cfb873eb418acdb78ba2b69cf1f30da0b8fb245082afdd15647cca5c@eureka-server-node2:8112/eureka/
